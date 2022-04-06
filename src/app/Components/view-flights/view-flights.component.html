@@ -1,0 +1,36 @@
+<ul class="list">
+  <li>
+    <div class="listItem header">
+      <div>FlightId</div>
+      <div>Origin</div>
+      <div>Destination</div>
+      <div>Fare</div>
+      <div>No of Seats</div>
+      <div>Click to Book</div>
+    </div>
+  </li>
+  <li *ngFor="let flight of flights">
+    <div class="listItem">
+      <div class="FlightId">{{ flight.FlightId }}</div>
+      <div class="origin">
+        <p>{{ flight.Origin }}</p>
+        <div class="depTime">{{ flight.DeptTime }}</div>
+      </div>
+      <div class="destination">
+        <p>{{ flight.Destination }}</p>
+        <div class="arrTime">{{ flight.ArrivalTime }}</div>
+      </div>
+      <div class="fare">Rs. {{ flight.Fare }}</div>
+      <div class="seats">
+        {{ flight.NoOfSeats }}
+      </div>
+      <div class="bookTicket">
+        <a
+          [routerLink]="['../BookTicket']"
+          [queryParams]="{ id: flight.FlightId, fare: flight.Fare }"
+          >Book</a
+        >
+      </div>
+    </div>
+  </li>
+</ul>

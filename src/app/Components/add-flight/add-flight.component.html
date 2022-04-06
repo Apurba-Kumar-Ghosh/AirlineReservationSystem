@@ -1,0 +1,40 @@
+<h2>Add New Flight</h2>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="inputDiv">
+    <label>FlightId</label>
+    <input name="flightId" type="text" [(ngModel)]="flight.FlightId" />
+  </div>
+
+  <div class="inputDiv">
+    <label>Origin</label>
+    <input name="origin" type="text" [(ngModel)]="flight.Origin" />
+  </div>
+
+  <div class="inputDiv">
+    <label>Destination</label>
+    <input name="destination" type="text" [(ngModel)]="flight.Destination" />
+  </div>
+
+  <div class="inputDiv">
+    <label>Dept Time</label>
+    <input name="departureTime" type="text" [(ngModel)]="flight.DeptTime" />
+  </div>
+
+  <div class="inputDiv">
+    <label>Arrival Time</label>
+    <input name="arrivalTime" type="text" [(ngModel)]="flight.ArrivalTime" />
+  </div>
+
+  <div class="inputDiv">
+    <label>Fare</label>
+    <input name="fare" type="number" [(ngModel)]="flight.Fare" />
+  </div>
+
+  <div class="inputDiv">
+    <label>No of Seats</label>
+    <input name="seats" type="number" [(ngModel)]="flight.NoOfSeats" />
+  </div>
+  <div class="submit-btn">
+    <button type="submit">Add Flight</button>
+  </div>
+</form>

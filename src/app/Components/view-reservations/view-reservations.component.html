@@ -1,0 +1,32 @@
+<ul class="list">
+  <li>
+    <div class="listItem header">
+      <div>Ticket Id</div>
+      <div>Name</div>
+      <div>Contact no</div>
+      <div>Email</div>
+      <div>Total Fare</div>
+      <div>No of Tickets</div>
+      <div>Cancel</div>
+    </div>
+  </li>
+  <li *ngFor="let ticket of tickets">
+    <div class="listItem">
+      <div class="ticketId">{{ ticket.TicketNo }}</div>
+      <div classs="passengerName">{{ ticket.PassengerName }}</div>
+      <div class="ContactNo">
+        <p>{{ ticket.ContacNo }}</p>
+      </div>
+      <div class="email">
+        <p>{{ ticket.Email }}</p>
+      </div>
+      <div class="fare">Rs. {{ ticket.TotalFare }}</div>
+      <div class="seats">
+        {{ ticket.NoOfTickets }}
+      </div>
+      <div class="cancelTicket">
+        <button (click)="cancelTicket(ticket.TicketNo)">Cancel Ticket</button>
+      </div>
+    </div>
+  </li>
+</ul>

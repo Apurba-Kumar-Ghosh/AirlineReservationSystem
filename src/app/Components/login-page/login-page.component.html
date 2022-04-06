@@ -1,0 +1,25 @@
+<div class="form-holder">
+  <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="input-container">
+      <label class="label" for="userName">UserName</label>
+      <input
+        class="input"
+        id="userName"
+        name="userName"
+        type="text"
+        [(ngModel)]="userName"
+      />
+    </div>
+    <div class="input-container">
+      <label class="label" for="password">Password</label>
+      <input
+        class="input"
+        id="password"
+        name="password"
+        type="text"
+        [(ngModel)]="password"
+      />
+    </div>
+    <button class="btn" type="submit">Login</button>
+  </form>
+</div>

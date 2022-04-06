@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Flight } from 'src/app/flight';
+import { FlightServiceService } from 'src/app/Services/flight-service.service';
+
+@Component({
+  selector: 'app-add-flight',
+  templateUrl: './add-flight.component.html',
+  styleUrls: ['./add-flight.component.css'],
+})
+export class AddFlightComponent implements OnInit {
+  public flight: Flight;
+
+  constructor(
+    private flightService: FlightServiceService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.flight = new Flight();
+  }
+
+  ngOnInit(): void {}
+  onSubmit(form: NgForm) {
+    this.flight.LaunchDate = new Date();
+    this.flightService.addFlight(this.flight);
+    this.router.navigate(['../ViewFlights'], { relativeTo: this.route });
+  }
+}

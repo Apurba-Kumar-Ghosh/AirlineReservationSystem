@@ -1,0 +1,22 @@
+.list {
+}
+.list li {
+  list-style-type: none;
+  border: 1px solid salmon;
+}
+.list li .listItem {
+  width: 90%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+.list li .listItem.header div {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.list li .listItem div {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
