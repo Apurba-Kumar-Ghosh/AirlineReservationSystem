@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Flight } from 'src/app/flight';
 import { FlightServiceService } from 'src/app/Services/flight-service.service';
@@ -10,13 +11,74 @@ import { FlightServiceService } from 'src/app/Services/flight-service.service';
 })
 export class ViewFlightsComponent implements OnInit {
   public flights: Flight[];
+  public Destination: string;
+  public Source: string;
   constructor(
     private flightService: FlightServiceService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.flights = [];
+    this.Destination = '';
+    this.Source = '';
+  }
 
   ngOnInit(): void {
-    this.flights = this.flightService.getAllFlights();
+    this.flightService.getAllFlights('', '').subscribe((res) => {
+      this.flights = [];
+      res.map((flight: any) => {
+        var temp = new Flight();
+        temp.FlightId = flight.flightID;
+        temp.Fare = flight.fare;
+        temp.ArrivalTime = flight.arrivalTime;
+        temp.Destination = flight.destination;
+        temp.Origin = flight.origin;
+        temp.NoOfSeats = flight.noOfSeats;
+        temp.LaunchDate = flight.launchDate;
+        temp.DeptTime = flight.deptTime;
+        this.flights.push(temp);
+      });
+    });
+  }
+
+  onSubmit(form: NgForm) {
+    this.flightService
+      .getAllFlights(this.Source, this.Destination)
+      .subscribe((res) => {
+        this.flights = [];
+        res.map((flight: any) => {
+          var temp = new Flight();
+          temp.FlightId = flight.flightID;
+          temp.Fare = flight.fare;
+          temp.ArrivalTime = flight.arrivalTime;
+          temp.Destination = flight.destination;
+          temp.Origin = flight.origin;
+          temp.NoOfSeats = flight.noOfSeats;
+          temp.LaunchDate = flight.launchDate;
+          temp.DeptTime = flight.deptTime;
+          this.flights.push(temp);
+        });
+      });
+  }
+  removeFlight(flightId: string) {
+    if (sessionStorage.getItem('isAdmin'))
+      this.flightService.removeFlight(flightId).subscribe((res) => {
+        this.flights = [];
+        res.map((flight: any) => {
+          var temp = new Flight();
+          temp.FlightId = flight.flightID;
+          temp.Fare = flight.fare;
+          temp.ArrivalTime = flight.arrivalTime;
+          temp.Destination = flight.destination;
+          temp.Origin = flight.origin;
+          temp.NoOfSeats = flight.noOfSeats;
+          temp.LaunchDate = flight.launchDate;
+          temp.DeptTime = flight.deptTime;
+          this.flights.push(temp);
+        });
+      });
+    else {
+      window.alert('You dont have delete privileges');
+    }
   }
 }

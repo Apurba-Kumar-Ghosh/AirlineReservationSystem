@@ -1,36 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Flight } from '../flight';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlightServiceService {
-  public flights: Flight[];
-  constructor() {
-    this.flights = [];
-  }
+  constructor(private http: HttpClient) {}
   addFlight(flight: Flight) {
-    this.flights.push(flight);
+    // this.flights.push(flight);
+    return this.http.post('http://localhost:28217/api/Flights', flight, {
+      responseType: 'text',
+    });
     // POST req to add flight
   }
-  getAllFlights(): Flight[] {
-    for (let i = 0; i < 10; i++) {
-      let flightOne = new Flight();
-      this.fillDetails(flightOne, i);
-    }
-    return this.flights;
-    // GET request to get all flights
+  removeFlight(flightId: string): Observable<any> {
+    return this.http.delete('http://localhost:28217/api/Flights', {
+      params: { FlightID: flightId },
+    });
   }
-  // for filling temporary data;
-  fillDetails(flight: Flight, index: number) {
-    flight.FlightId = index.toString();
-    flight.ArrivalTime = '10:00pm';
-    flight.DeptTime = '9:00pm';
-    flight.Destination = 'Lucknow';
-    flight.Origin = 'Kolkata';
-    flight.Fare = index * 1000;
-    flight.NoOfSeats = index * 50;
-    flight.LaunchDate = new Date();
-    this.flights.push(flight);
+  getAllFlights(Source?: string, Destination?: string): Observable<any> {
+    // GET request to get all flights
+    return this.http.get('http://localhost:28217/api/Flights', {
+      params: { Source: Source, Destination: Destination },
+      responseType: 'json',
+    });
   }
 }

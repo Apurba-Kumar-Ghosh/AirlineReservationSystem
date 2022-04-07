@@ -11,6 +11,10 @@ import { BookTicketComponent } from './Components/book-ticket/book-ticket.compon
 import { ViewReservationsComponent } from './Components/view-reservations/view-reservations.component';
 import { ViewFlightsComponent } from './Components/view-flights/view-flights.component';
 import { FlightServiceService } from './Services/flight-service.service';
+import { TicketService } from './Services/ticket.service';
+import { UserService } from './Services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,8 +26,8 @@ import { FlightServiceService } from './Services/flight-service.service';
     ViewReservationsComponent,
     ViewFlightsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [FlightServiceService],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [FlightServiceService, TicketService, UserService, HttpClient],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

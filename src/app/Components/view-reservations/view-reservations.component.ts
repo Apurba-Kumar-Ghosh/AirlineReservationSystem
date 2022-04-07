@@ -14,7 +14,9 @@ export class ViewReservationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tickets = this.ticketService.getAllTickets('getCookie(userName)');
+    this.tickets = this.ticketService.getAllTickets(
+      sessionStorage.getItem('userName') || ''
+    );
   }
   cancelTicket(id: number) {
     this.ticketService.cancelTicket(id);

@@ -43,7 +43,7 @@
   align-items: center;
   width: 100%;
 }
-.form-holder .form .btn {
+.btn {
   height: 30px;
   width: 40%;
   border-radius: 8px;
@@ -58,6 +58,10 @@
   background: blue;
   color: white;
   transition: all 0.25s ease-in;
+}
+.admin-btn {
+  width: 70%;
+  margin: 0 auto;
 }
 .btn:hover {
   cursor: pointer;

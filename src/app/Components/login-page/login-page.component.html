@@ -12,7 +12,9 @@
       />
     </div>
     <div class="input-container" *ngIf="!isAdmin">
-      <button class="btn" (click)="showPasswordField()">LOG IN as Admin</button>
+      <button class="btn admin-btn" (click)="showPasswordField()">
+        LOG IN as Admin
+      </button>
     </div>
     <div class="input-container" *ngIf="isAdmin">
       <label class="label" for="password">Password</label>

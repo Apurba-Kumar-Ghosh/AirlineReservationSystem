@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ticket } from '../ticket';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
   public tempTickets: Ticket[];
-  constructor() {
+  constructor(private http: HttpClient) {
     this.tempTickets = [];
   }
 

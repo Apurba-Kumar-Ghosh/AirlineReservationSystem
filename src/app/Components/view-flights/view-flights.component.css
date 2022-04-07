@@ -1,4 +1,40 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  width: 70%;
+  margin: 0 auto;
+}
+form .searchCriteria {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+form .searchCriteria input {
+  padding: 0.3rem 0.4rem;
+  border-radius: 8px;
+  line-height: 1.2rem;
+}
+form .search-btn {
+  background: #1a9356;
+  padding: 6px 9px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.25s ease-in-out;
+  font-weight: 700;
+}
+.search-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 .list {
+  padding: 10px 0;
 }
 .list li {
   list-style-type: none;
