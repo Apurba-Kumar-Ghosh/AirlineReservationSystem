@@ -11,13 +11,14 @@ import { FlightServiceService } from 'src/app/Services/flight-service.service';
 })
 export class AddFlightComponent implements OnInit {
   public flight: Flight;
-
+  public isLoading: boolean;
   constructor(
     private flightService: FlightServiceService,
     private router: Router,
     private route: ActivatedRoute
   ) {
     this.flight = new Flight();
+    this.isLoading = false;
   }
 
   ngOnInit(): void {}
@@ -28,6 +29,10 @@ export class AddFlightComponent implements OnInit {
         window.alert('This flightId already exists');
         this.flight = new Flight();
       } else {
+        this.isLoading = true;
+        setTimeout(() => {
+          
+        })
         this.router.navigate(['../ViewFlights'], { relativeTo: this.route });
       }
     });

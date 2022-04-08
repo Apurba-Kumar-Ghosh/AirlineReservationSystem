@@ -24,8 +24,8 @@
       <div>Destination</div>
       <div>Fare</div>
       <div>No of Seats</div>
-      <div>Book</div>
-      <div>Delete</div>
+      <div *ngIf="!isAdmin">Book</div>
+      <div *ngIf="isAdmin">Delete</div>
     </div>
   </li>
   <li *ngFor="let flight of flights">
@@ -43,15 +43,22 @@
       <div class="seats">
         {{ flight.NoOfSeats }}
       </div>
-      <div class="bookTicket">
+      <div class="bookTicket" *ngIf="!isAdmin">
         <a
           [routerLink]="['../BookTicket']"
           [queryParams]="{ id: flight.FlightId, fare: flight.Fare }"
           >Book</a
         >
       </div>
-      <div class="deleteFlight">
+      <div class="deleteFlight" *ngIf="isAdmin">
         <button (click)="removeFlight(flight.FlightId)">Delete</button>
+      </div>
+      <div class="generateReport" *ngIf="isAdmin">
+        <a
+          [routerLink]="['../GenerateReport']"
+          [queryParams]="{ id: flight.FlightId, fare: flight.Fare }"
+          >Gen Report</a
+        >
       </div>
     </div>
   </li>

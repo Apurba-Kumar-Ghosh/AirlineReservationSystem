@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FlightServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  
   addFlight(flight: Flight) {
-    // this.flights.push(flight);
     return this.http.post('http://localhost:28217/api/Flights', flight, {
       responseType: 'text',
     });

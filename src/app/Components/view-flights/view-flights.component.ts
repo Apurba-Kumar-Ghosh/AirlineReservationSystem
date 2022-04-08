@@ -13,6 +13,7 @@ export class ViewFlightsComponent implements OnInit {
   public flights: Flight[];
   public Destination: string;
   public Source: string;
+  public isAdmin: boolean;
   constructor(
     private flightService: FlightServiceService,
     private router: Router,
@@ -21,6 +22,7 @@ export class ViewFlightsComponent implements OnInit {
     this.flights = [];
     this.Destination = '';
     this.Source = '';
+    this.isAdmin = !!sessionStorage.getItem('isAdmin');
   }
 
   ngOnInit(): void {
@@ -80,5 +82,8 @@ export class ViewFlightsComponent implements OnInit {
     else {
       window.alert('You dont have delete privileges');
     }
+  }
+  generateReport(flightId: string) {
+    
   }
 }

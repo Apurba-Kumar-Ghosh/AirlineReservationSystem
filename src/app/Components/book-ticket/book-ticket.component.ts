@@ -12,12 +12,14 @@ import { Ticket } from 'src/app/ticket';
 export class BookTicketComponent implements OnInit {
   public ticket: Ticket;
   public fare: number;
+  public isLoading: boolean;
   constructor(
     private route: ActivatedRoute,
     private ticketService: TicketService,
     private router: Router
   ) {
     this.ticket = new Ticket();
+    this.ticket.PassengerName = sessionStorage.getItem('UserName') || '';
   }
 
   ngOnInit(): void {
@@ -32,7 +34,19 @@ export class BookTicketComponent implements OnInit {
     this.ticket.TotalFare = this.fare * form.value.NoOfTickets;
     this.ticket.Status = 'Booked';
     this.ticket.TicketNo = 123;
-    this.ticketService.bookTicket(this.ticket);
-    this.router.navigate(['../ViewReservations'], { relativeTo: this.route });
+    this.ticketService.bookTicket(this.ticket).subscribe((res) => {
+      console.log(res);
+      if (res === 'BookingSucccesful') {
+        this.isLoading = true;
+        setTimeout(() => {
+          this.router.navigate(['../ViewReservations'], {
+            relativeTo: this.route,
+          });
+        }, 500);
+      } else {
+        this.isLoading = false;
+        window.alert('This flight is already fully booked');
+      }
+    });
   }
 }

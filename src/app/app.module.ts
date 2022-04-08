@@ -15,6 +15,8 @@ import { TicketService } from './Services/ticket.service';
 import { UserService } from './Services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { GenerateReportComponent } from './Components/generate-report/generate-report.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     BookTicketComponent,
     ViewReservationsComponent,
     ViewFlightsComponent,
+    LoaderComponent,
+    GenerateReportComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [FlightServiceService, TicketService, UserService, HttpClient],

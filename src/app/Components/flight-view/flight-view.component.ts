@@ -7,9 +7,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./flight-view.component.css'],
 })
 export class FlightViewComponent implements OnInit {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  public isAdmin: boolean;
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.isAdmin = sessionStorage.getItem('isAdmin') ? true : false;
+  }
 
   ngOnInit(): void {
-    this.router.navigate(['ViewFlights'], { relativeTo: this.route });
+    // this.router.navigate(['ViewFlights'], { relativeTo: this.route });
+  }
+  logout(): void {
+    sessionStorage.removeItem('UserName');
+    sessionStorage.removeItem('isAdmin');
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

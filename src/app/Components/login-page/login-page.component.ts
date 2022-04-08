@@ -13,6 +13,7 @@ export class LoginPageComponent implements OnInit {
   public userName: string;
   public password: string;
   public isAdmin: boolean;
+  public isLoading: boolean;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -21,20 +22,25 @@ export class LoginPageComponent implements OnInit {
     this.userName = '';
     this.password = '';
     this.isAdmin = false;
+    this.isLoading = false;
   }
-  onSubmit(form: NgForm): void {
+  async onSubmit(form: NgForm): Promise<void> {
     sessionStorage.setItem('UserName', this.userName);
-    this.router.navigate(['home'], { relativeTo: this.route });
-    console.log(
-      'formdata: Name : ' + this.userName + ' password: ' + this.password
-    );
-    this.userService.login(this.userName, this.password).subscribe((res) => {
-      if (res == 'Logged In') {
-        sessionStorage.setItem('isAdmin', 'true');
-      } else {
-        window.alert('Wrong UserName/Password entered');
-      }
-    });
+    if (this.password != '') {
+      await this.userService
+        .login(this.userName, this.password)
+        .subscribe((res) => {
+          if (res == 'Logged In') {
+            sessionStorage.setItem('isAdmin', 'true');
+          } else {
+            window.alert('Wrong UserName/Password entered');
+          }
+        });
+    }
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigate(['home/ViewFlights'], { relativeTo: this.route });
+    }, 1000);
   }
   showPasswordField() {
     this.isAdmin = !this.isAdmin;

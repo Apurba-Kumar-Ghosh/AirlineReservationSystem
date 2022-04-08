@@ -1,3 +1,4 @@
+<app-loader *ngIf="isLoading"></app-loader>
 <ul class="list">
   <li>
     <div class="listItem header">
@@ -24,8 +25,11 @@
       <div class="seats">
         {{ ticket.NoOfTickets }}
       </div>
-      <div class="cancelTicket">
+      <div *ngIf="ticket.Status === 'Booked'" class="cancelTicket">
         <button (click)="cancelTicket(ticket.TicketNo)">Cancel Ticket</button>
+      </div>
+      <div *ngIf="ticket.Status === 'Cancelled'" class="status">
+        <p style="color: red">CANCELLED</p>
       </div>
     </div>
   </li>

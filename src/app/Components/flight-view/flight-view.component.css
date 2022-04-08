@@ -22,3 +22,23 @@ a {
   color: black;
   list-style-type: none;
 }
+.header-list li a {
+  font-weight: 600;
+  text-decoration: underline;
+  transition: all 0.25s ease-in-out;
+}
+a:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.header-list li button {
+  border: none;
+  border-radius: 8px;
+  background: black;
+  color: white;
+  padding: 4px 10px;
+}
+.header-list li button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
