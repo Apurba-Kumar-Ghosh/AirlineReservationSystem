@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { GenerateReportComponent } from './Components/generate-report/generate-report.component';
+import { ReportService } from './Services/report.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,13 @@ import { GenerateReportComponent } from './Components/generate-report/generate-r
     GenerateReportComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [FlightServiceService, TicketService, UserService, HttpClient],
+  providers: [
+    FlightServiceService,
+    TicketService,
+    UserService,
+    HttpClient,
+    ReportService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

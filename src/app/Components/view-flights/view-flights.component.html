@@ -53,13 +53,6 @@
       <div class="deleteFlight" *ngIf="isAdmin">
         <button (click)="removeFlight(flight.FlightId)">Delete</button>
       </div>
-      <div class="generateReport" *ngIf="isAdmin">
-        <a
-          [routerLink]="['../GenerateReport']"
-          [queryParams]="{ id: flight.FlightId, fare: flight.Fare }"
-          >Gen Report</a
-        >
-      </div>
     </div>
   </li>
 </ul>

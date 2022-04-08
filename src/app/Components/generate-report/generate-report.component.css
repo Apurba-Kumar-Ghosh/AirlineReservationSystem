@@ -1,0 +1,55 @@
+.container {
+  width: 75vw;
+  margin: 0 auto;
+}
+.reportList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.airlineRevenue,
+.totalRevenue {
+  width: 100%;
+}
+form {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inputBox {
+  display: flex;
+  width: 45%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.totalRevenue {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.totalRevenue button {
+  background: aqua;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.result {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

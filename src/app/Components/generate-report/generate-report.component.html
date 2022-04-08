@@ -1,1 +1,32 @@
-<p>generate-report works!</p>
+<div class="container">
+  <h2>Report Generator</h2>
+  <div class="reportList">
+    <div class="airlineRevenue">
+      <h4>Report By flightId</h4>
+      <form #form="ngForm" (ngSubmit)="flightReport(form)">
+        <div class="inputBox">
+          <label>FlightId</label>
+          <input type="text" name="flightId" [(ngModel)]="flightId" />
+        </div>
+        <!-- <div class="inputBox">
+          <label>Start Date</label>
+          <input type="text" name="startDate" [(ngModel)]="startDate" />
+        </div>
+        <div class="inputBox">
+          <label>End Date</label>
+          <input type="text" name="endDate" [(ngModel)]="endDate" />
+        </div> -->
+        <button type="submit">Generate</button>
+      </form>
+      <div class="result">
+        <p>The Revenue of flight {{ flightId }} is : Rs. {{ flightIdAmt }}</p>
+      </div>
+    </div>
+    <div class="totalRevenue">
+      <button (click)="generateAirlineRevenue()">
+        Generate Total Airline Revenue
+      </button>
+      <div>Total Revenue of Airline is : Rs. {{ totalRevenue }}</div>
+    </div>
+  </div>
+</div>

@@ -20,7 +20,8 @@ export class ViewReservationsComponent implements OnInit {
   }
   cancelTicket(id: number) {
     this.ticketService.cancelTicket(id).subscribe((res) => {
-      console.log(res);
+      this.tickets = [];
+      this.fillDetails(res);
     });
   }
   getTickets(): void {
