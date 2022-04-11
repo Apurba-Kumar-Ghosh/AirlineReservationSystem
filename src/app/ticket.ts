@@ -3,7 +3,7 @@ export class Ticket {
   public FlightId: string;
   public DateOfBooking: Date;
   public PassengerName: string;
-  public ContacNo: number;
+  public ContactNo: number;
   public Email: string;
   public JourneyDate: Date;
   public NoOfTickets: number;

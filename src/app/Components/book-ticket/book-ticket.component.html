@@ -1,4 +1,4 @@
-<h2>Book Your Flight</h2>
+<h2 style="text-align: center">Book Your Flight</h2>
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <div class="inputDiv">
     <label>PassengerName</label>
@@ -14,11 +14,11 @@
   </div>
   <div class="inputDiv">
     <label>Contact Number</label>
-    <input name="ContacNo" type="number" [(ngModel)]="ticket.ContacNo" />
+    <input name="ContacNo" type="number" [(ngModel)]="ticket.ContactNo" />
   </div>
   <div class="inputDiv">
     <label>EmailId</label>
-    <input name="Email" type="text" [(ngModel)]="ticket.Email" />
+    <input name="Email" type="email" [(ngModel)]="ticket.Email" />
   </div>
   <div class="inputDiv">
     <label>Date of Journey</label>

@@ -36,7 +36,7 @@ export class ViewReservationsComponent implements OnInit {
     res.map((res: any) => {
       let temp = new Ticket();
       temp.FlightId = res.flightID;
-      temp.ContacNo = res.contactNo;
+      temp.ContactNo = res.contactNo;
       temp.DateOfBooking = res.dateOfBooking;
       temp.Email = res.email;
       temp.JourneyDate = res.journeyDate;
