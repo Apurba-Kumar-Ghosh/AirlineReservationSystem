@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { GenerateReportComponent } from './Components/generate-report/generate-report.component';
 import { ReportService } from './Services/report.service';
+import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ReportService } from './Services/report.service';
     ViewFlightsComponent,
     LoaderComponent,
     GenerateReportComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

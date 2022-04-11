@@ -1,3 +1,8 @@
+h1 {
+  color: black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: center;
+}
 .form-holder {
   position: absolute;
   top: 50%;
@@ -67,4 +72,3 @@
   cursor: pointer;
   transform: scaleX(1.1);
 }
-
