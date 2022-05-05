@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const urlString: string = 'http://localhost:28217/api/Users/login';
+const urlString: string =
+  'http://airlinesprint.azurewebsites.net/api/Users/AdminLogin';
 @Injectable({
   providedIn: 'root',
 })

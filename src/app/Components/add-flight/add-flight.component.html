@@ -1,5 +1,5 @@
 <h2 style="text-align: center">Add New Flight</h2>
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+<form ngNativeValidate #form="ngForm" (ngSubmit)="onSubmit(form)">
   <div class="inputDiv">
     <label>FlightId</label>
     <input name="flightId" type="text" [(ngModel)]="flight.FlightId" />

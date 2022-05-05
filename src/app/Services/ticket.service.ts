@@ -14,16 +14,23 @@ export class TicketService {
 
   bookTicket(ticket: Ticket): Observable<string> {
     // POST req for saving reservation;
-    return this.http.post('http://localhost:28217/api/Reservations', ticket, {
-      responseType: 'text',
-    });
+    return this.http.post(
+      'http://airlinesprint.azurewebsites.net/api/Reservations/BookTickets',
+      ticket,
+      {
+        responseType: 'text',
+      }
+    );
   }
 
   getAllTickets(passengerName: string): Observable<any> {
     // GET req to get all the tickets of that person
-    return this.http.get('http://localhost:28217/api/Reservations', {
-      params: { PassengerName: passengerName },
-    });
+    return this.http.get(
+      'http://airlinesprint.azurewebsites.net/api/Reservations',
+      {
+        params: { PassengerName: passengerName },
+      }
+    );
   }
   cancelTicket(ticketNo: number) {
     //PUT request to set Status = 'Cancelled'

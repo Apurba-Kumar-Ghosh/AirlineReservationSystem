@@ -1,5 +1,5 @@
 <h2 style="text-align: center">Book Your Flight</h2>
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+<form ngNativeValidate #form="ngForm" (ngSubmit)="onSubmit(form)">
   <div class="inputDiv">
     <label>PassengerName</label>
     <input

@@ -7,12 +7,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FlightServiceService {
-  constructor(private http: HttpClient) { }
-  
+  constructor(private http: HttpClient) {}
+
   addFlight(flight: Flight) {
-    return this.http.post('http://localhost:28217/api/Flights', flight, {
-      responseType: 'text',
-    });
+    return this.http.post(
+      'http://airlinesprint.azurewebsites.net/api/Flights',
+      flight,
+      {
+        responseType: 'text',
+      }
+    );
     // POST req to add flight
   }
   removeFlight(flightId: string): Observable<any> {
@@ -22,8 +26,8 @@ export class FlightServiceService {
   }
   getAllFlights(Source?: string, Destination?: string): Observable<any> {
     // GET request to get all flights
-    return this.http.get('http://localhost:28217/api/Flights', {
-      params: { Source: Source, Destination: Destination },
+    return this.http.get('http://airlinesprint.azurewebsites.net/api/Flights', {
+      params: { Origin: Source, Destination: Destination },
       responseType: 'json',
     });
   }

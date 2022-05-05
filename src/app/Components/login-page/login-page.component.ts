@@ -30,17 +30,24 @@ export class LoginPageComponent implements OnInit {
       await this.userService
         .login(this.userName, this.password)
         .subscribe((res) => {
+          this.isLoading = true;
           if (res == 'Logged In') {
             sessionStorage.setItem('isAdmin', 'true');
+            setTimeout(() => {
+              this.router.navigate(['home/ViewFlights'], {
+                relativeTo: this.route,
+              });
+            }, 1000);
           } else {
+            this.isLoading = false;
             window.alert('Wrong UserName/Password entered');
           }
         });
+    } else {
+      this.router.navigate(['home/ViewFlights'], {
+        relativeTo: this.route,
+      });
     }
-    this.isLoading = true;
-    setTimeout(() => {
-      this.router.navigate(['home/ViewFlights'], { relativeTo: this.route });
-    }, 1000);
   }
   showPasswordField() {
     this.isAdmin = !this.isAdmin;

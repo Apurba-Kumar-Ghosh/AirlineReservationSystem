@@ -3,7 +3,7 @@
   <div class="reportList">
     <div class="airlineRevenue">
       <h4>Report By flightId</h4>
-      <form #form="ngForm" (ngSubmit)="flightReport(form)">
+      <form ngNativeValidate #form="ngForm" (ngSubmit)="flightReport(form)">
         <div class="inputBox">
           <label>FlightId</label>
           <input type="text" name="flightId" [(ngModel)]="flightId" />
