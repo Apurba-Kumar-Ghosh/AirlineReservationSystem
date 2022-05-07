@@ -30,27 +30,27 @@
   </li>
   <li *ngFor="let flight of flights">
     <div class="listItem">
-      <div class="FlightId">{{ flight.FlightId }}</div>
-      <div class="origin">
+      <div class="item FlightId">{{ flight.FlightId }}</div>
+      <div class="item origin">
         <p>{{ flight.Origin }}</p>
         <div class="depTime">{{ flight.DeptTime }}</div>
       </div>
-      <div class="destination">
+      <div class="item destination">
         <p>{{ flight.Destination }}</p>
         <div class="arrTime">{{ flight.ArrivalTime }}</div>
       </div>
-      <div class="fare">Rs. {{ flight.Fare }}</div>
-      <div class="seats">
+      <div class="item fare">Rs. {{ flight.Fare }}</div>
+      <div class="item seats">
         {{ flight.NoOfSeats }}
       </div>
-      <div class="bookTicket" *ngIf="!isAdmin">
+      <div class="item bookTicket" *ngIf="!isAdmin">
         <a
           [routerLink]="['../BookTicket']"
           [queryParams]="{ id: flight.FlightId, fare: flight.Fare }"
           >Book</a
         >
       </div>
-      <div class="deleteFlight" *ngIf="isAdmin">
+      <div class="item deleteFlight" *ngIf="isAdmin">
         <button (click)="removeFlight(flight.FlightId)">Delete</button>
       </div>
     </div>

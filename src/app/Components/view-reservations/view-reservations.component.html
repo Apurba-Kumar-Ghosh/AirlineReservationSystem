@@ -13,22 +13,22 @@
   </li>
   <li *ngFor="let ticket of tickets">
     <div class="listItem">
-      <div class="ticketId">{{ ticket.TicketNo }}</div>
-      <div classs="passengerName">{{ ticket.PassengerName }}</div>
-      <div class="ContactNo">
+      <div class="item ticketId">{{ ticket.TicketNo }}</div>
+      <div class="item passengerName">{{ ticket.PassengerName }}</div>
+      <div class="item ContactNo">
         <p>{{ ticket.ContactNo }}</p>
       </div>
-      <div class="email">
+      <div class="item email">
         <p>{{ ticket.Email }}</p>
       </div>
-      <div class="fare">Rs. {{ ticket.TotalFare }}</div>
-      <div class="seats">
+      <div class="item fare">Rs. {{ ticket.TotalFare }}</div>
+      <div class="item seats">
         {{ ticket.NoOfTickets }}
       </div>
-      <div *ngIf="ticket.Status === 'Booked'" class="cancelTicket">
+      <div *ngIf="ticket.Status === 'Booked'" class="cancelTicket item">
         <button (click)="cancelTicket(ticket.TicketNo)">Cancel Ticket</button>
       </div>
-      <div *ngIf="ticket.Status === 'Cancelled'" class="status">
+      <div *ngIf="ticket.Status === 'Cancelled'" class="item status">
         <p style="color: red">CANCELLED</p>
       </div>
     </div>

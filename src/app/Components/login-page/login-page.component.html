@@ -1,39 +1,41 @@
 <app-loader *ngIf="isLoading"></app-loader>
-<h1>Airline Reservation System</h1>
-<div class="form-holder">
-  <form
-    ngNativeValidate
-    class="form"
-    #form="ngForm"
-    (ngSubmit)="onSubmit(form)"
-  >
-    <div class="input-container">
-      <label class="label" for="userName">UserName</label>
-      <input
-        class="input"
-        id="userName"
-        name="userName"
-        type="text"
-        [(ngModel)]="userName"
-        required
-      />
-    </div>
-    <div class="input-container" *ngIf="!isAdmin">
-      <button class="btn admin-btn" (click)="showPasswordField()">
-        LOG IN as Admin
-      </button>
-    </div>
-    <div class="input-container" *ngIf="isAdmin">
-      <label class="label" for="password">Password</label>
-      <input
-        class="input"
-        id="password"
-        name="password"
-        type="text"
-        [(ngModel)]="password"
-      />
-    </div>
-    <button class="btn" type="submit">Login</button>
-  </form>
+<div class="container">
+  <h1>Airline Reservation System</h1>
+  <div class="form-holder">
+    <form
+      ngNativeValidate
+      class="form"
+      #form="ngForm"
+      (ngSubmit)="onSubmit(form)"
+    >
+      <div class="input-container">
+        <label class="label" for="userName">UserName</label>
+        <input
+          class="input"
+          id="userName"
+          name="userName"
+          type="text"
+          [(ngModel)]="userName"
+          required
+        />
+      </div>
+      <div class="input-container" *ngIf="!isAdmin">
+        <button class="btn admin-btn" (click)="showPasswordField()">
+          LOG IN as Admin
+        </button>
+      </div>
+      <div class="input-container" *ngIf="isAdmin">
+        <label class="label" for="password">Password</label>
+        <input
+          class="input"
+          id="password"
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+        />
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+  </div>
 </div>
 <app-footer></app-footer>
