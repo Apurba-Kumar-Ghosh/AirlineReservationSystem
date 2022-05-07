@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-const reportUrl = 'http://localhost:28217/api/GenerateReport';
+const reportUrl =
+  'http://airlinesprint.azurewebsites.net/api/Reservations/GenerateFlightRevenue';
 @Injectable({
   providedIn: 'root',
 })

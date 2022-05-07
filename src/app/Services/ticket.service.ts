@@ -35,7 +35,7 @@ export class TicketService {
   cancelTicket(ticketNo: number) {
     //PUT request to set Status = 'Cancelled'
     return this.http.put(
-      'http://localhost:28217/api/Reservations/' + ticketNo,
+      'http://airlinesprint.azurewebsites.net/api/Reservations/' + ticketNo,
       {
         status: 'Cancelled',
       }
