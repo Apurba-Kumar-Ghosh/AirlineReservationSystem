@@ -14,45 +14,74 @@
       />
     </div>
   </div>
-  <button class="search-btn" type="submit">Search</button>
+  <button style="margin-top: 1rem" class="search-btn" type="submit">
+    Search
+  </button>
 </form>
-<ul class="list">
-  <li>
-    <div class="listItem header">
-      <div>FlightId</div>
-      <div>Origin</div>
-      <div>Destination</div>
-      <div>Fare</div>
-      <div>No of Seats</div>
-      <div *ngIf="!isAdmin">Book</div>
-      <div *ngIf="isAdmin">Delete</div>
-    </div>
-  </li>
-  <li *ngFor="let flight of flights">
-    <div class="listItem">
-      <div class="item FlightId">{{ flight.FlightId }}</div>
-      <div class="item origin">
+
+<table style="width: 100%; margin-top: 3rem" mat-table [dataSource]="flights">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>FlightId</th>
+    <td mat-cell *matCellDef="let flight">{{ flight.FlightId }}</td>
+  </ng-container>
+  <ng-container matColumnDef="origin">
+    <th mat-header-cell *matHeaderCellDef>Origin</th>
+    <td mat-cell *matCellDef="let flight">
+      <div class="double">
         <p>{{ flight.Origin }}</p>
-        <div class="depTime">{{ flight.DeptTime }}</div>
+        <p style="color: red">{{ flight.DeptTime }}</p>
       </div>
-      <div class="item destination">
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="destination">
+    <th mat-header-cell *matHeaderCellDef>Destination</th>
+    <td mat-cell *matCellDef="let flight">
+      <div>
         <p>{{ flight.Destination }}</p>
-        <div class="arrTime">{{ flight.ArrivalTime }}</div>
+        <p style="color: green">{{ flight.ArrivalTime }}</p>
       </div>
-      <div class="item fare">Rs. {{ flight.Fare }}</div>
-      <div class="item seats">
-        {{ flight.NoOfSeats }}
-      </div>
-      <div class="item bookTicket" *ngIf="!isAdmin">
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="fare">
+    <th mat-header-cell *matHeaderCellDef>Fare</th>
+    <td mat-cell *matCellDef="let flight">{{ flight.Fare }}</td>
+  </ng-container>
+  <ng-container matColumnDef="capacity">
+    <th mat-header-cell *matHeaderCellDef>Capacity</th>
+    <td mat-cell *matCellDef="let flight">{{ flight.NoOfSeats }}</td>
+  </ng-container>
+  <ng-container matColumnDef="booking">
+    <th mat-header-cell *matHeaderCellDef>Book</th>
+    <td mat-cell *matCellDef="let flight">
+      <div class="bookTicket">
         <a
           [routerLink]="['../BookTicket']"
           [queryParams]="{ id: flight.FlightId, fare: flight.Fare }"
           >Book</a
         >
       </div>
-      <div class="item deleteFlight" *ngIf="isAdmin">
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef>Edit</th>
+    <td mat-cell *matCellDef="let flight">
+      <div class="editFlight">
+        <a
+          [routerLink]="['../EditFlights']"
+          [queryParams]="{ flightId: flight.FlightId }"
+          >Edit</a
+        >
+      </div>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let flight">
+      <div class="deleteFlight">
         <button (click)="removeFlight(flight.FlightId)">Delete</button>
       </div>
-    </div>
-  </li>
-</ul>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

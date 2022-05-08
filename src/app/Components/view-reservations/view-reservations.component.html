@@ -1,36 +1,82 @@
 <app-loader *ngIf="isLoading"></app-loader>
-<ul class="list">
-  <li>
-    <div class="listItem header">
-      <div>Ticket Id</div>
-      <div>Name</div>
-      <div>Contact no</div>
-      <div>Email</div>
-      <div>Total Fare</div>
-      <div>No of Tickets</div>
-      <div>Cancel</div>
-    </div>
-  </li>
-  <li *ngFor="let ticket of tickets">
-    <div class="listItem">
-      <div class="item ticketId">{{ ticket.TicketNo }}</div>
-      <div class="item passengerName">{{ ticket.PassengerName }}</div>
-      <div class="item ContactNo">
-        <p>{{ ticket.ContactNo }}</p>
-      </div>
-      <div class="item email">
-        <p>{{ ticket.Email }}</p>
-      </div>
-      <div class="item fare">Rs. {{ ticket.TotalFare }}</div>
-      <div class="item seats">
-        {{ ticket.NoOfTickets }}
-      </div>
-      <div *ngIf="ticket.Status === 'Booked'" class="cancelTicket item">
-        <button (click)="cancelTicket(ticket.TicketNo)">Cancel Ticket</button>
-      </div>
-      <div *ngIf="ticket.Status === 'Cancelled'" class="item status">
-        <p style="color: red">CANCELLED</p>
-      </div>
-    </div>
-  </li>
-</ul>
+<form
+  style="
+    padding-top: 1rem;
+    width: 100%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Ticket No.</mat-label>
+      <input
+        matInput
+        name="ticketNo"
+        placeholder="Ticket No"
+        [(ngModel)]="ticketId"
+        required
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <button
+      (click)="getTicketsById()"
+      style="margin: 0 auto"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
+      Submit
+    </button>
+  </p>
+</form>
+<h2 style="text-align: center">My reservations</h2>
+<div style="width: 100%; height: 100%" *ngIf="tickets.length !== 0">
+  <table style="width: 100%" mat-table [dataSource]="tickets">
+    <ng-container matColumnDef="TicketId">
+      <th mat-header-cell *matHeaderCellDef>Ticket No.</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.TicketNo }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef>Passenger Name</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.PassengerName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Phone">
+      <th mat-header-cell *matHeaderCellDef>Contact No.</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.ContactNo }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef>Email Id</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.Email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Fare">
+      <th mat-header-cell *matHeaderCellDef>Total Fare</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.TotalFare }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Seats">
+      <th mat-header-cell *matHeaderCellDef>Seats</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.NoOfTickets }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let ticket">
+        <div>
+          <p *ngIf="ticket.Status === 'Cancelled'" style="color: red">
+            Cancelled
+          </p>
+          <p *ngIf="ticket.Status === 'Booked'">
+            <button (click)="cancelTicket(ticket.TicketNo)">
+              Cancel Ticket
+            </button>
+          </p>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

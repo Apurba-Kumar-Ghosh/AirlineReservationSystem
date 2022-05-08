@@ -1,6 +1,6 @@
-<div class="container">
-  <h2 style="text-align: center">Add New Flight</h2>
-  <form ngNativeValidate #form="ngForm" (ngSubmit)="onSubmit(form)">
+<div class="container" style="background-color: black">
+  <h2>Edit Flight</h2>
+  <form [formGroup]="flightForm" class="editForm" (ngSubmit)="onSubmit()">
     <p>
       <mat-form-field appearance="fill">
         <mat-label>FlightId</mat-label>
@@ -9,7 +9,8 @@
           id="FlightId"
           name="FlightId"
           placeholder="FlightId"
-          [(ngModel)]="flight.FlightId"
+          formControlName="FlightId"
+          readonly
         />
       </mat-form-field>
     </p>
@@ -20,7 +21,7 @@
           matInput
           name="Source"
           placeholder="Source"
-          [(ngModel)]="flight.Origin"
+          formControlName="Origin"
           required
         />
       </mat-form-field>
@@ -32,7 +33,7 @@
           name="Destination"
           matInput
           placeholder="Destination"
-          [(ngModel)]="flight.Destination"
+          formControlName="Destination"
           required
         />
       </mat-form-field>
@@ -44,7 +45,7 @@
           matInput
           name="DeptTime"
           placeholder="Dept Time"
-          [(ngModel)]="flight.DeptTime"
+          formControlName="DeptTime"
           required
         />
       </mat-form-field>
@@ -56,7 +57,7 @@
           matInput
           name="arrivalTime"
           placeholder="Arrival Time"
-          [(ngModel)]="flight.ArrivalTime"
+          formControlName="ArrivalTime"
           required
         />
       </mat-form-field>
@@ -69,7 +70,7 @@
           matInput
           name="Fare"
           placeholder="Fare"
-          [(ngModel)]="flight.Fare"
+          formControlName="Fare"
           required
         />
       </mat-form-field>
@@ -82,11 +83,20 @@
           name="NoOfSeats"
           matInput
           placeholder="Capacity"
-          [(ngModel)]="flight.NoOfSeats"
+          formControlName="NoOfSeats"
           required
         />
       </mat-form-field>
     </p>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <p>
+      <button
+        style="margin: 0 auto"
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Submit
+      </button>
+    </p>
   </form>
 </div>

@@ -8,6 +8,7 @@ import { BookTicketComponent } from './Components/book-ticket/book-ticket.compon
 import { ViewReservationsComponent } from './Components/view-reservations/view-reservations.component';
 import { ViewFlightsComponent } from './Components/view-flights/view-flights.component';
 import { GenerateReportComponent } from './Components/generate-report/generate-report.component';
+import { EditFlightComponent } from './Components/edit-flight/edit-flight.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'GenerateReport', component: GenerateReportComponent },
       { path: 'ViewReservations', component: ViewReservationsComponent },
       { path: 'ViewFlights', component: ViewFlightsComponent },
+      { path: 'EditFlights', component: EditFlightComponent },
     ],
   },
 ];

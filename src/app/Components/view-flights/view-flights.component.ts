@@ -10,6 +10,13 @@ import { FlightServiceService } from 'src/app/Services/flight-service.service';
   styleUrls: ['./view-flights.component.css'],
 })
 export class ViewFlightsComponent implements OnInit {
+  displayedColumns: string[] = [
+    'id',
+    'origin',
+    'destination',
+    'fare',
+    'capacity',
+  ];
   public flights: Flight[];
   public Destination: string;
   public Source: string;
@@ -20,12 +27,17 @@ export class ViewFlightsComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.flights = [];
-    this.Destination = '';
-    this.Source = '';
+    this.Destination = 'Kolkata';
+    this.Source = 'Lucknow';
     this.isAdmin = !!sessionStorage.getItem('isAdmin');
   }
 
   ngOnInit(): void {
+    if (this.isAdmin) {
+      this.displayedColumns.push('delete', 'edit');
+    } else {
+      this.displayedColumns.push('booking');
+    }
     this.flightService.getAllFlights('', '').subscribe((res) => {
       this.flights = [];
       res.map((flight: any) => {
@@ -38,6 +50,7 @@ export class ViewFlightsComponent implements OnInit {
         temp.NoOfSeats = flight.noOfSeats;
         temp.LaunchDate = flight.launchDate;
         temp.DeptTime = flight.deptTime;
+        // temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
         this.flights.push(temp);
       });
     });
@@ -58,6 +71,7 @@ export class ViewFlightsComponent implements OnInit {
           temp.NoOfSeats = flight.noOfSeats;
           temp.LaunchDate = flight.launchDate;
           temp.DeptTime = flight.deptTime;
+          temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
           this.flights.push(temp);
         });
       });
@@ -83,7 +97,5 @@ export class ViewFlightsComponent implements OnInit {
       window.alert('You dont have delete privileges');
     }
   }
-  generateReport(flightId: string) {
-    
-  }
+  generateReport(flightId: string) {}
 }

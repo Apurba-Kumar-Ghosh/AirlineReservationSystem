@@ -1,28 +1,75 @@
 <h2 style="text-align: center">Book Your Flight</h2>
-<form ngNativeValidate #form="ngForm" (ngSubmit)="onSubmit(form)">
-  <div class="inputDiv">
-    <label>PassengerName</label>
-    <input
-      name="PassengerName"
-      type="text"
-      [(ngModel)]="ticket.PassengerName"
-    />
-  </div>
-  <div class="inputDiv">
-    <label>No of Tickets</label>
-    <input name="NoOfTickets" type="number" [(ngModel)]="ticket.NoOfTickets" />
-  </div>
-  <div class="inputDiv">
-    <label>Contact Number</label>
-    <input name="ContacNo" type="number" [(ngModel)]="ticket.ContactNo" />
-  </div>
-  <div class="inputDiv">
-    <label>EmailId</label>
-    <input name="Email" type="email" [(ngModel)]="ticket.Email" />
-  </div>
-  <div class="inputDiv">
-    <label>Date of Journey</label>
-    <input name="JourneyDate" type="date" [(ngModel)]="ticket.JourneyDate" />
-  </div>
-  <button type="submit">Book Ticket</button>
+
+<form
+  style="width: 100%; background: black; color: white"
+  ngNativeValidate
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form)"
+>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Passenger Name</mat-label>
+      <input
+        type="text"
+        matInput
+        id="PassengerName"
+        name="PassengerName"
+        placeholder="PassengerName"
+        [(ngModel)]="ticket.PassengerName"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Contact Number</mat-label>
+      <input
+        type="tel"
+        matInput
+        name="Contact"
+        placeholder="Contact"
+        [(ngModel)]="ticket.ContactNo"
+        required
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Email Id</mat-label>
+      <input
+        type="email"
+        name="Email"
+        matInput
+        placeholder="Email"
+        [(ngModel)]="ticket.Email"
+        required
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>No of seats</mat-label>
+      <input
+        type="number"
+        matInput
+        name="NoOfTickets"
+        placeholder="Seats"
+        [(ngModel)]="ticket.NoOfTickets"
+        required
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Journey Date</mat-label>
+      <input
+        type="date"
+        matInput
+        name="JourneyDate"
+        placeholder="Date of Journey"
+        [(ngModel)]="ticket.JourneyDate"
+        required
+      />
+    </mat-form-field>
+  </p>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
 </form>

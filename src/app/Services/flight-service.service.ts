@@ -9,26 +9,49 @@ import { Observable } from 'rxjs';
 export class FlightServiceService {
   constructor(private http: HttpClient) {}
 
-  addFlight(flight: Flight) {
+  addFlight(flight: Flight): Observable<any> {
     return this.http.post(
       'http://airlinesprint.azurewebsites.net/api/Flights',
       flight,
       {
-        responseType: 'text',
+        responseType: 'json',
       }
     );
     // POST req to add flight
   }
   removeFlight(flightId: string): Observable<any> {
-    return this.http.delete('http://localhost:28217/api/Flights', {
+    return this.http.put('http://airlinesprint.azurewebsites.net/api/Flights', {
       params: { FlightID: flightId },
     });
   }
   getAllFlights(Source?: string, Destination?: string): Observable<any> {
     // GET request to get all flights
     return this.http.get('http://airlinesprint.azurewebsites.net/api/Flights', {
-      params: { Origin: Source, Destination: Destination },
+      params: {
+        Origin: Source,
+        Destination: Destination,
+      },
       responseType: 'json',
     });
+  }
+
+  getFlightDetails(flightId: number): Observable<any> {
+    return this.http.get(
+      'http://airlinesprint.azurewebsites.net/api/Flights/ViewFlightById',
+      {
+        params: { FlightId: flightId },
+        responseType: 'json',
+      }
+    );
+  }
+
+  editFlightDetails(flight: Flight): Observable<any> {
+    return this.http.put(
+      'http://airlinesprint.azurewebsites.net/api/Flights/EditFlightDetails',
+      flight,
+      {
+        responseType: 'text',
+      }
+    );
   }
 }

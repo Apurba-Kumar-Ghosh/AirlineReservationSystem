@@ -7,4 +7,6 @@ export class Flight {
   public ArrivalTime: string;
   public NoOfSeats: number;
   public Fare: number;
+  public NoOfSeatsAvailable?: number;
+  public Status?: 'Active' | 'Inactive';
 }

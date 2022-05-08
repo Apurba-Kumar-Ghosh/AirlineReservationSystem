@@ -23,16 +23,15 @@ export class AddFlightComponent implements OnInit {
 
   ngOnInit(): void {}
   onSubmit(form: NgForm) {
+    this.flight.Status = 'Active';
     this.flight.LaunchDate = new Date();
     this.flightService.addFlight(this.flight).subscribe((res) => {
-      if (res === 'FlightExistsError') {
+      if (!res.isSuccess) {
         window.alert('This flightId already exists');
         this.flight = new Flight();
       } else {
         this.isLoading = true;
-        setTimeout(() => {
-          
-        })
+        setTimeout(() => {});
         this.router.navigate(['../ViewFlights'], { relativeTo: this.route });
       }
     });

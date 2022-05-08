@@ -89,15 +89,8 @@ form .search-btn {
   font-size: 0.8rem;
   font-weight: 500;
 }
-.list li .listItem .origin,
-.list li .listItem .destination {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.list li .listItem .deleteFlight button {
+
+.deleteFlight button {
   text-decoration: none;
   background: rgba(255, 0, 0, 0.7);
   border-radius: 8px;
@@ -105,7 +98,7 @@ form .search-btn {
   padding: 4px 8px;
   transition: all 0.25s ease-in-out;
 }
-.list li .listItem .bookTicket a {
+.bookTicket a {
   text-decoration: none;
   background: rgba(0, 255, 0, 0.7);
   border-radius: 8px;
@@ -113,8 +106,17 @@ form .search-btn {
   padding: 4px 8px;
   transition: all 0.25s ease-in-out;
 }
-.list li .listItem .bookTicket a:hover,
-.list li .listItem .deleteFlight button:hover {
+.editFlight a {
+  text-decoration: none;
+  background: rgba(0, 255, 0, 0.7);
+  border-radius: 8px;
+  color: white;
+  padding: 4px 8px;
+  transition: all 0.25s ease-in-out;
+}
+.bookTicket a:hover,
+.editFlight a:hover,
+.deleteFlight button:hover {
   transform: scale(1.2);
   cursor: pointer;
 }
