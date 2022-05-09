@@ -70,7 +70,14 @@
             Cancelled
           </p>
           <p *ngIf="ticket.Status === 'Booked'">
-            <button (click)="cancelTicket(ticket)">Cancel Ticket</button>
+            <button
+              mat-raised-button
+              color="primary"
+              style="margin-top: 5px"
+              (click)="cancelTicket(ticket)"
+            >
+              Cancel Ticket
+            </button>
           </p>
         </div>
       </td>

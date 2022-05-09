@@ -41,6 +41,7 @@ export class FlightServiceService {
           Origin: Source,
           Destination: Destination,
           JourneyDate: date,
+          IsAdmin: !!sessionStorage.getItem('isAdmin'),
         },
         responseType: 'json',
       }

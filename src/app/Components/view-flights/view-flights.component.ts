@@ -36,7 +36,7 @@ export class ViewFlightsComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isAdmin) {
-      this.displayedColumns.push('delete', 'edit');
+      this.displayedColumns.push('delete', 'edit', 'status');
     } else {
       this.displayedColumns.push('booking');
     }
@@ -74,6 +74,7 @@ export class ViewFlightsComponent implements OnInit {
           temp.LaunchDate = flight.launchDate;
           temp.DeptTime = flight.deptTime;
           temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
+          temp.Status = flight.status;
           this.flights.push(temp);
         });
       });

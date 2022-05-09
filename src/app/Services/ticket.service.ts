@@ -36,7 +36,10 @@ export class TicketService {
     return this.http.get(
       'http://cg-ars.azurewebsites.net/reservations/get-ticket-by-id',
       {
-        params: { id: id },
+        params: {
+          id: id,
+          PassengerName: sessionStorage.getItem('UserName'),
+        },
       }
     );
   }
