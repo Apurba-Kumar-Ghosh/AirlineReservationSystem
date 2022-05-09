@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-const reportUrl =
-  'http://airlinesprint.azurewebsites.net/api/Reservations/GenerateFlightRevenue';
+const reportUrl = 'http://cg-ars.azurewebsites.net/reservations/';
 @Injectable({
   providedIn: 'root',
 })
 export class ReportService {
   constructor(private http: HttpClient) {}
 
-  generateReportById(flightId: string): Observable<DoubleRange> {
-    return this.http.get(reportUrl, {
+  generateReportById(flightId: string): Observable<any> {
+    return this.http.get(reportUrl + '/get-revenue-by-flight', {
       params: {
         FlightID: flightId,
       },
@@ -27,7 +26,7 @@ export class ReportService {
       },
     });
   }
-  generateAirlineReport(): Observable<DoubleRange> {
-    return this.http.get(reportUrl + '/RevenueCGAirLine');
+  generateAirlineReport(): Observable<any> {
+    return this.http.get(reportUrl + 'total-revenue');
   }
 }

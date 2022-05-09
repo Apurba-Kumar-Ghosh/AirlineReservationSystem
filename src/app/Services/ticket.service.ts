@@ -12,32 +12,40 @@ export class TicketService {
     this.tempTickets = [];
   }
 
-  bookTicket(ticket: Ticket): Observable<string> {
+  bookTicket(ticket: Ticket): Observable<any> {
     // POST req for saving reservation;
     return this.http.post(
-      'http://airlinesprint.azurewebsites.net/api/Reservations/BookTickets',
+      'http://cg-ars.azurewebsites.net/reservations/book-ticket',
       ticket,
       {
-        responseType: 'text',
+        responseType: 'json',
       }
     );
   }
 
-  getAllTickets(passengerName: string): Observable<any> {
+  getAllTicketsByPassengerName(passengerName: string): Observable<any> {
     // GET req to get all the tickets of that person
     return this.http.get(
-      'http://airlinesprint.azurewebsites.net/api/Reservations',
+      'http://cg-ars.azurewebsites.net/reservations/get-ticket-by-passenger-name',
       {
         params: { PassengerName: passengerName },
       }
     );
   }
-  cancelTicket(ticketNo: number) {
+  getTicketById(id: number): Observable<any> {
+    return this.http.get(
+      'http://cg-ars.azurewebsites.net/reservations/get-ticket-by-id',
+      {
+        params: { id: id },
+      }
+    );
+  }
+  cancelTicket(ticket: Ticket): Observable<any> {
     //PUT request to set Status = 'Cancelled'
     return this.http.put(
-      'http://airlinesprint.azurewebsites.net/api/Reservations/' + ticketNo,
+      'http://cg-ars.azurewebsites.net/reservations/cancel-ticket',
       {
-        status: 'Cancelled',
+        ticket,
       }
     );
   }

@@ -21,12 +21,14 @@ export class ViewFlightsComponent implements OnInit {
   public Destination: string;
   public Source: string;
   public isAdmin: boolean;
+  public date: Date;
   constructor(
     private flightService: FlightServiceService,
     private router: Router,
     private route: ActivatedRoute
   ) {
     this.flights = [];
+    this.date = new Date();
     this.Destination = 'Kolkata';
     this.Source = 'Lucknow';
     this.isAdmin = !!sessionStorage.getItem('isAdmin');
@@ -38,30 +40,30 @@ export class ViewFlightsComponent implements OnInit {
     } else {
       this.displayedColumns.push('booking');
     }
-    this.flightService.getAllFlights('', '').subscribe((res) => {
-      this.flights = [];
-      res.map((flight: any) => {
-        var temp = new Flight();
-        temp.FlightId = flight.flightID;
-        temp.Fare = flight.fare;
-        temp.ArrivalTime = flight.arrivalTime;
-        temp.Destination = flight.destination;
-        temp.Origin = flight.origin;
-        temp.NoOfSeats = flight.noOfSeats;
-        temp.LaunchDate = flight.launchDate;
-        temp.DeptTime = flight.deptTime;
-        // temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
-        this.flights.push(temp);
-      });
-    });
+    // this.flightService.getAllFlights('', '', this.date).subscribe((res) => {
+    //   this.flights = [];
+    //   res.flightAndSeats.map((flight: any) => {
+    //     var temp = new Flight();
+    //     temp.FlightId = flight.flightID;
+    //     temp.Fare = flight.fare;
+    //     temp.ArrivalTime = flight.arrivalTime;
+    //     temp.Destination = flight.destination;
+    //     temp.Origin = flight.origin;
+    //     temp.NoOfSeats = flight.noOfSeats;
+    //     temp.LaunchDate = flight.launchDate;
+    //     temp.DeptTime = flight.deptTime;
+    //     temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
+    //     this.flights.push(temp);
+    //   });
+    // });
   }
 
   onSubmit(form: NgForm) {
     this.flightService
-      .getAllFlights(this.Source, this.Destination)
+      .getAllFlights(this.Source, this.Destination, this.date)
       .subscribe((res) => {
         this.flights = [];
-        res.map((flight: any) => {
+        res.flightAndSeats.map((flight: any) => {
           var temp = new Flight();
           temp.FlightId = flight.flightID;
           temp.Fare = flight.fare;
@@ -80,7 +82,7 @@ export class ViewFlightsComponent implements OnInit {
     if (sessionStorage.getItem('isAdmin'))
       this.flightService.removeFlight(flightId).subscribe((res) => {
         this.flights = [];
-        res.map((flight: any) => {
+        res.flightAndSeats.map((flight: any) => {
           var temp = new Flight();
           temp.FlightId = flight.flightID;
           temp.Fare = flight.fare;

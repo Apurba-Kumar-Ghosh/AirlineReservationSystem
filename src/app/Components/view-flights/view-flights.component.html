@@ -13,6 +13,10 @@
         [(ngModel)]="Destination"
       />
     </div>
+    <div class="inputBox">
+      <label> Journey Date: </label>
+      <input type="date" id="date" name="date" [(ngModel)]="date" />
+    </div>
   </div>
   <button style="margin-top: 1rem" class="search-btn" type="submit">
     Search
@@ -48,7 +52,7 @@
   </ng-container>
   <ng-container matColumnDef="capacity">
     <th mat-header-cell *matHeaderCellDef>Capacity</th>
-    <td mat-cell *matCellDef="let flight">{{ flight.NoOfSeats }}</td>
+    <td mat-cell *matCellDef="let flight">{{ flight.NoOfSeatsAvailable }}</td>
   </ng-container>
   <ng-container matColumnDef="booking">
     <th mat-header-cell *matHeaderCellDef>Book</th>

@@ -25,12 +25,12 @@ export class GenerateReportComponent implements OnInit {
     this.reportService
       .generateReportById(form.value.flightId)
       .subscribe((res) => {
-        this.flightIdAmt = res;
+        this.flightIdAmt = res.revenue;
       });
   }
   generateAirlineRevenue() {
     this.reportService.generateAirlineReport().subscribe((res) => {
-      this.totalRevenue = res;
+      this.totalRevenue = res.revenue;
     });
   }
 }

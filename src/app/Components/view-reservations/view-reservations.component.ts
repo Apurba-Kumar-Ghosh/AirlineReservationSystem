@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { TicketService } from 'src/app/Services/ticket.service';
 import { Ticket } from 'src/app/ticket';
 
@@ -28,11 +29,11 @@ export class ViewReservationsComponent implements OnInit {
   ngOnInit(): void {
     // this.getTickets();
     this.ticketService
-      .getAllTickets(sessionStorage.getItem('UserName') || '')
+      .getAllTicketsByPassengerName(sessionStorage.getItem('UserName') || '')
       .subscribe((res) => {
         console.log(res);
         // this.fillDetails(res);
-        res.map((res: any) => {
+        res.reservation.map((res: any) => {
           var temp = new Ticket();
           temp.FlightId = res.flightID;
           temp.ContactNo = res.contactNo;
@@ -48,19 +49,38 @@ export class ViewReservationsComponent implements OnInit {
         });
       });
   }
-  cancelTicket(id: number) {
-    this.ticketService.cancelTicket(id).subscribe((res) => {
+  cancelTicket(ticket: Ticket) {
+    this.ticketService.cancelTicket(ticket).subscribe((res) => {
       this.tickets = [];
-      this.fillDetails(res);
+      if (res.isSuccess) {
+        window.alert(res.message);
+      }
     });
   }
   getTickets(): void {
     this.ticketService
-      .getAllTickets(sessionStorage.getItem('UserName') || '')
+      .getAllTicketsByPassengerName(sessionStorage.getItem('UserName') || '')
       .subscribe((res) => {
         console.log(res);
-        this.fillDetails(res);
+        this.fillDetails(res.reservation);
       });
+  }
+  getTicketById(): void {
+    this.ticketService.getTicketById(this.ticketId).subscribe((res) => {
+      this.tickets = [];
+      var temp = new Ticket();
+      temp.FlightId = res.reservation.flightID;
+      temp.ContactNo = res.reservation.contactNo;
+      temp.DateOfBooking = res.reservation.dateOfBooking;
+      temp.Email = res.reservation.email;
+      temp.JourneyDate = res.reservation.journeyDate;
+      temp.TicketNo = res.reservation.ticketNo;
+      temp.TotalFare = res.reservation.totalFare;
+      temp.Status = res.reservation.status;
+      temp.PassengerName = res.reservation.passengerName;
+      temp.NoOfTickets = res.reservation.noOfTickets;
+      this.tickets.push(temp);
+    });
   }
   fillDetails(res: any) {
     res.map((res: any) => {
@@ -77,8 +97,5 @@ export class ViewReservationsComponent implements OnInit {
       temp.NoOfTickets = res.noOfTickets;
       this.tickets.push(temp);
     });
-  }
-  getTicketsById() {
-    // to be implemented
   }
 }

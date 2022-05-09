@@ -11,7 +11,7 @@ export class FlightServiceService {
 
   addFlight(flight: Flight): Observable<any> {
     return this.http.post(
-      'http://airlinesprint.azurewebsites.net/api/Flights',
+      'http://cg-ars.azurewebsites.net/flights/add-flight',
       flight,
       {
         responseType: 'json',
@@ -20,26 +20,38 @@ export class FlightServiceService {
     // POST req to add flight
   }
   removeFlight(flightId: string): Observable<any> {
-    return this.http.put('http://airlinesprint.azurewebsites.net/api/Flights', {
-      params: { FlightID: flightId },
-    });
-  }
-  getAllFlights(Source?: string, Destination?: string): Observable<any> {
-    // GET request to get all flights
-    return this.http.get('http://airlinesprint.azurewebsites.net/api/Flights', {
-      params: {
-        Origin: Source,
-        Destination: Destination,
+    return this.http.put(
+      'http://cg-ars.azurewebsites.net/flights/remove-flight',
+      {
+        params: { id: flightId },
       },
-      responseType: 'json',
-    });
+      { responseType: 'json' }
+    );
+  }
+  getAllFlights(
+    Source: string,
+    Destination: string,
+    date: any
+  ): Observable<any> {
+    // GET request to get all flights
+    return this.http.get(
+      'http://cg-ars.azurewebsites.net/flights/all-flights',
+      {
+        params: {
+          Origin: Source,
+          Destination: Destination,
+          JourneyDate: date,
+        },
+        responseType: 'json',
+      }
+    );
   }
 
   getFlightDetails(flightId: number): Observable<any> {
     return this.http.get(
-      'http://airlinesprint.azurewebsites.net/api/Flights/ViewFlightById',
+      'http://cg-ars.azurewebsites.net/flights/flights-by-id',
       {
-        params: { FlightId: flightId },
+        params: { id: flightId },
         responseType: 'json',
       }
     );
@@ -47,10 +59,10 @@ export class FlightServiceService {
 
   editFlightDetails(flight: Flight): Observable<any> {
     return this.http.put(
-      'http://airlinesprint.azurewebsites.net/api/Flights/EditFlightDetails',
+      'http://cg-ars.azurewebsites.net/flights/edit-flight',
       flight,
       {
-        responseType: 'text',
+        responseType: 'json',
       }
     );
   }

@@ -19,6 +19,7 @@ export class EditFlightComponent implements OnInit {
     ArrivalTime: new FormControl(''),
     Fare: new FormControl(),
     NoOfSeats: new FormControl(),
+    Status: new FormControl(),
   });
   public flight: Flight;
   public isLoading: boolean;
@@ -40,7 +41,7 @@ export class EditFlightComponent implements OnInit {
     this.flightService.getFlightDetails(this.flightid).subscribe((res) => {
       console.log(res);
 
-      this.saveDetails(res);
+      this.saveDetails(res.flight);
     });
   }
   saveDetails(res: any) {
@@ -52,6 +53,7 @@ export class EditFlightComponent implements OnInit {
       DeptTime: res.deptTime,
       Fare: res.fare,
       NoOfSeats: res.noOfSeats,
+      Status: res.status,
     });
   }
   onSubmit() {

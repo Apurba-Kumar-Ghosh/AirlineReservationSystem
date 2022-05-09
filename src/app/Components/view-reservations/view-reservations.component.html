@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
   "
 >
   <p>
@@ -24,7 +25,7 @@
   </p>
   <p>
     <button
-      (click)="getTicketsById()"
+      (click)="getTicketById()"
       style="margin: 0 auto"
       type="submit"
       mat-raised-button
@@ -69,9 +70,7 @@
             Cancelled
           </p>
           <p *ngIf="ticket.Status === 'Booked'">
-            <button (click)="cancelTicket(ticket.TicketNo)">
-              Cancel Ticket
-            </button>
+            <button (click)="cancelTicket(ticket)">Cancel Ticket</button>
           </p>
         </div>
       </td>
