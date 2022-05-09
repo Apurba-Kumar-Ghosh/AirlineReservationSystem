@@ -36,7 +36,11 @@ export class BookTicketComponent implements OnInit {
     this.ticket.TicketNo = 123;
     this.ticketService.bookTicket(this.ticket).subscribe((res) => {
       console.log(res);
-      if (res === 'Reservation Is Being Processed') {
+      if (
+        res.message === 'Booking Request is being Processed' ||
+        res.isSuccess === true
+      ) {
+        window.alert('Your booking number is ' + res.reservation.ticketNo);
         this.isLoading = true;
         setTimeout(() => {
           this.router.navigate(['../ViewReservations'], {
