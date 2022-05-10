@@ -51,12 +51,20 @@ export class ViewReservationsComponent implements OnInit {
       });
   }
   cancelTicket(ticket: Ticket) {
-    this.ticketService.cancelTicket(ticket).subscribe((res) => {
-      this.tickets = [];
-      if (res.isSuccess) {
-        window.alert(res.message);
-      }
-    });
+    let current = new Date();
+    let date = new Date(ticket.JourneyDate);
+    if (
+      current.getMonth() < date.getMonth() ||
+      (current.getMonth() === date.getMonth() &&
+        current.getDate() < date.getDate())
+    ) {
+      this.ticketService.cancelTicket(ticket.TicketNo).subscribe((res) => {
+        this.tickets = [];
+        if (res.isSuccess) {
+          // window.alert(res.message);
+        }
+      });
+    }
   }
   getTickets(): void {
     this.ticketService

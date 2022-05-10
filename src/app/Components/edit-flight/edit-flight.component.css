@@ -4,12 +4,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 h2 {
   color: white;
   text-align: center;
+  padding-top: 1rem;
 }
 p {
   width: 100%;
@@ -19,4 +20,13 @@ p {
 }
 .editForm input {
   color: #fff;
+}
+.form-field {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.field {
+  flex-basis: 100%;
 }

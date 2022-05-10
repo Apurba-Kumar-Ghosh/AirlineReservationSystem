@@ -61,8 +61,23 @@
         <a
           [routerLink]="['../BookTicket']"
           [queryParams]="{ id: flight.FlightId, fare: flight.Fare }"
+          *ngIf="flight.NoOfSeatsAvailable > 0"
           >Book</a
         >
+        <button
+          class="bookTicket"
+          style="
+            color: black;
+            background: grey;
+            border: none;
+            border-radius: 8px;
+            padding: 3px 6px;
+          "
+          disabled
+          *ngIf="flight.NoOfSeatsAvailable <= 0"
+        >
+          Book
+        </button>
       </div>
     </td>
   </ng-container>

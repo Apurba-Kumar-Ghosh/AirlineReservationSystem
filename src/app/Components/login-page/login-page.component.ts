@@ -24,25 +24,25 @@ export class LoginPageComponent implements OnInit {
     this.isAdmin = false;
     this.isLoading = false;
   }
-  async onSubmit(form: NgForm): Promise<void> {
+  onSubmit(form: NgForm): void {
     sessionStorage.setItem('UserName', this.userName);
     if (this.password != '') {
-      await this.userService
-        .login(this.userName, this.password)
-        .subscribe((res) => {
-          this.isLoading = true;
-          if (res == 'Logged In') {
-            sessionStorage.setItem('isAdmin', 'true');
-            setTimeout(() => {
-              this.router.navigate(['home/ViewFlights'], {
-                relativeTo: this.route,
-              });
-            }, 1000);
-          } else {
-            this.isLoading = false;
-            window.alert('Wrong UserName/Password entered');
-          }
-        });
+      this.userService.login(this.userName, this.password).subscribe((res) => {
+        console.log(res);
+        this.isLoading = true;
+        if (res.isSuccess === true) {
+          sessionStorage.setItem('isAdmin', 'true');
+          sessionStorage.setItem('token', `Bearer ${res.userInfo.token}`);
+          setTimeout(() => {
+            this.router.navigate(['home/ViewFlights'], {
+              relativeTo: this.route,
+            });
+          }, 1000);
+        } else {
+          this.isLoading = false;
+          window.alert('Wrong UserName/Password entered');
+        }
+      });
     } else {
       this.router.navigate(['home/ViewFlights'], {
         relativeTo: this.route,

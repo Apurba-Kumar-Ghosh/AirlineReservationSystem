@@ -18,6 +18,7 @@ export class FlightViewComponent implements OnInit {
   logout(): void {
     sessionStorage.removeItem('UserName');
     sessionStorage.removeItem('isAdmin');
+    sessionStorage.removeItem('token');
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

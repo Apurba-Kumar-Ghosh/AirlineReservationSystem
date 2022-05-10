@@ -5,8 +5,9 @@
   width: 100vw;
   box-sizing: border-box;
   padding: 0 2rem;
-  justify-content: space-between;
-  min-height: 3rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 2rem;
   background: burlywood;
   color: #020202;
 }

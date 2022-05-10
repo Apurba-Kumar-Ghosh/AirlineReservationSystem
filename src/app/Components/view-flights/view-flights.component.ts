@@ -40,22 +40,25 @@ export class ViewFlightsComponent implements OnInit {
     } else {
       this.displayedColumns.push('booking');
     }
-    // this.flightService.getAllFlights('', '', this.date).subscribe((res) => {
-    //   this.flights = [];
-    //   res.flightAndSeats.map((flight: any) => {
-    //     var temp = new Flight();
-    //     temp.FlightId = flight.flightID;
-    //     temp.Fare = flight.fare;
-    //     temp.ArrivalTime = flight.arrivalTime;
-    //     temp.Destination = flight.destination;
-    //     temp.Origin = flight.origin;
-    //     temp.NoOfSeats = flight.noOfSeats;
-    //     temp.LaunchDate = flight.launchDate;
-    //     temp.DeptTime = flight.deptTime;
-    //     temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
-    //     this.flights.push(temp);
-    //   });
-    // });
+    this.flightService
+      .getAllFlights('Lucknow', 'Kolkata', new Date().toISOString())
+      .subscribe((res) => {
+        this.flights = [];
+        res.flightAndSeats.map((flight: any) => {
+          var temp = new Flight();
+          temp.FlightId = flight.flightID;
+          temp.Fare = flight.fare;
+          temp.ArrivalTime = flight.arrivalTime;
+          temp.Destination = flight.destination;
+          temp.Origin = flight.origin;
+          temp.NoOfSeats = flight.noOfSeats;
+          temp.LaunchDate = flight.launchDate;
+          temp.DeptTime = flight.deptTime;
+          temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
+          temp.Status = flight.status;
+          this.flights.push(temp);
+        });
+      });
   }
 
   onSubmit(form: NgForm) {
@@ -82,19 +85,13 @@ export class ViewFlightsComponent implements OnInit {
   removeFlight(flightId: string) {
     if (sessionStorage.getItem('isAdmin'))
       this.flightService.removeFlight(flightId).subscribe((res) => {
-        this.flights = [];
-        res.flightAndSeats.map((flight: any) => {
-          var temp = new Flight();
-          temp.FlightId = flight.flightID;
-          temp.Fare = flight.fare;
-          temp.ArrivalTime = flight.arrivalTime;
-          temp.Destination = flight.destination;
-          temp.Origin = flight.origin;
-          temp.NoOfSeats = flight.noOfSeats;
-          temp.LaunchDate = flight.launchDate;
-          temp.DeptTime = flight.deptTime;
-          this.flights.push(temp);
-        });
+        if (res.isSuccess === true) {
+          this.flights.forEach((f) => {
+            if (f.FlightId === flightId) {
+              f.Status = 'Inactive';
+            }
+          });
+        }
       });
     else {
       window.alert('You dont have delete privileges');

@@ -1,115 +1,126 @@
 <div class="container" style="background-color: black">
   <h2>Edit Flight</h2>
   <form [formGroup]="flightForm" class="editForm" (ngSubmit)="onSubmit()">
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>FlightId</mat-label>
-        <input
-          matInput
-          id="FlightId"
-          name="FlightId"
-          placeholder="FlightId"
-          formControlName="FlightId"
-          readonly
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Source</mat-label>
-        <input
-          matInput
-          name="Source"
-          placeholder="Source"
-          formControlName="Origin"
-          required
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Destination</mat-label>
-        <input
-          name="Destination"
-          matInput
-          placeholder="Destination"
-          formControlName="Destination"
-          required
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Departure</mat-label>
-        <input
-          matInput
-          name="DeptTime"
-          placeholder="Dept Time"
-          formControlName="DeptTime"
-          required
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Arrival</mat-label>
-        <input
-          matInput
-          name="arrivalTime"
-          placeholder="Arrival Time"
-          formControlName="ArrivalTime"
-          required
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Fare</mat-label>
-        <input
-          type="number"
-          matInput
-          name="Fare"
-          placeholder="Fare"
-          formControlName="Fare"
-          required
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>No of Seats</mat-label>
-        <input
-          type="number"
-          name="NoOfSeats"
-          matInput
-          placeholder="Capacity"
-          formControlName="NoOfSeats"
-          required
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Status</mat-label>
-        <input
-          type="text"
-          name="Status"
-          matInput
-          placeholder="Status"
-          formControlName="Status"
-          readonly
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <button
-        style="margin: 0 auto"
-        type="submit"
-        mat-raised-button
-        color="primary"
-      >
-        Submit
-      </button>
-    </p>
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100%;
+        padding-top: 1.5rem;
+      "
+    >
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>FlightId</mat-label>
+          <input
+            matInput
+            id="FlightId"
+            name="FlightId"
+            placeholder="FlightId"
+            formControlName="FlightId"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Source</mat-label>
+          <input
+            matInput
+            name="Source"
+            placeholder="Source"
+            formControlName="Origin"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Destination</mat-label>
+          <input
+            name="Destination"
+            matInput
+            placeholder="Destination"
+            formControlName="Destination"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Departure</mat-label>
+          <input
+            matInput
+            name="DeptTime"
+            placeholder="Dept Time"
+            formControlName="DeptTime"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Arrival</mat-label>
+          <input
+            matInput
+            name="arrivalTime"
+            placeholder="Arrival Time"
+            formControlName="ArrivalTime"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Fare</mat-label>
+          <input
+            type="number"
+            matInput
+            name="Fare"
+            placeholder="Fare"
+            formControlName="Fare"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>No of Seats</mat-label>
+          <input
+            type="number"
+            name="NoOfSeats"
+            matInput
+            placeholder="Capacity"
+            formControlName="NoOfSeats"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <input
+            type="text"
+            name="Status"
+            matInput
+            placeholder="Status"
+            formControlName="Status"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field field">
+        <button
+          style="margin: 0 auto"
+          type="submit"
+          mat-raised-button
+          color="primary"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
   </form>
 </div>

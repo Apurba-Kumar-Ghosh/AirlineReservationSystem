@@ -43,12 +43,14 @@ export class TicketService {
       }
     );
   }
-  cancelTicket(ticket: Ticket): Observable<any> {
+  cancelTicket(ticketNo: number): Observable<any> {
     //PUT request to set Status = 'Cancelled'
-    return this.http.put(
+    return this.http.delete(
       'http://cg-ars.azurewebsites.net/reservations/cancel-ticket',
       {
-        ticket,
+        params: {
+          TicketNo: ticketNo,
+        },
       }
     );
   }

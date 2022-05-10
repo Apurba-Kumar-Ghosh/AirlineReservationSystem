@@ -1,10 +1,20 @@
 .container {
+  height: 100vh;
   background: gray;
   color: white;
 }
+.form-field {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.field {
+  flex-basis: 100%;
+}
 form {
   width: 80vw;
-  height: 85vh;
+  height: 65vh;
   padding: 2rem 0;
   border-radius: 8px;
   background: black;
