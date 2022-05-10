@@ -13,7 +13,8 @@ export class ViewReservationsComponent implements OnInit {
     'TicketId',
     'Name',
     'Phone',
-    'Email',
+    'BookingDate',
+    'JourneyDate',
     'Fare',
     'Seats',
     'Status',
@@ -110,5 +111,16 @@ export class ViewReservationsComponent implements OnInit {
       temp.NoOfTickets = res.noOfTickets;
       this.tickets.push(temp);
     });
+  }
+  findDate(dateOfBooking: any): boolean {
+    let current = new Date();
+    let bookingDate = new Date(dateOfBooking);
+    if (
+      bookingDate.getMonth() > current.getMonth() ||
+      (current.getMonth() === bookingDate.getMonth() &&
+        current.getDate() < bookingDate.getDate())
+    )
+      return false;
+    else return true;
   }
 }
