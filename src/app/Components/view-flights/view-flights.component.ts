@@ -62,25 +62,35 @@ export class ViewFlightsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.flightService
-      .getAllFlights(this.Source, this.Destination, this.date)
-      .subscribe((res) => {
-        this.flights = [];
-        res.flightAndSeats.map((flight: any) => {
-          var temp = new Flight();
-          temp.FlightId = flight.flightID;
-          temp.Fare = flight.fare;
-          temp.ArrivalTime = flight.arrivalTime;
-          temp.Destination = flight.destination;
-          temp.Origin = flight.origin;
-          temp.NoOfSeats = flight.noOfSeats;
-          temp.LaunchDate = flight.launchDate;
-          temp.DeptTime = flight.deptTime;
-          temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
-          temp.Status = flight.status;
-          this.flights.push(temp);
+    let current = new Date();
+    let searchDate = new Date(this.date);
+    if (
+      (current.getDate() < searchDate.getDate() &&
+        searchDate.getMonth() === current.getMonth()) ||
+      current.getMonth() < searchDate.getMonth()
+    )
+      this.flightService
+        .getAllFlights(this.Source, this.Destination, this.date)
+        .subscribe((res) => {
+          this.flights = [];
+          res.flightAndSeats.map((flight: any) => {
+            var temp = new Flight();
+            temp.FlightId = flight.flightID;
+            temp.Fare = flight.fare;
+            temp.ArrivalTime = flight.arrivalTime;
+            temp.Destination = flight.destination;
+            temp.Origin = flight.origin;
+            temp.NoOfSeats = flight.noOfSeats;
+            temp.LaunchDate = flight.launchDate;
+            temp.DeptTime = flight.deptTime;
+            temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
+            temp.Status = flight.status;
+            this.flights.push(temp);
+          });
         });
-      });
+    else {
+      window.alert('Please enter a valid date');
+    }
   }
   removeFlight(flightId: string) {
     if (sessionStorage.getItem('isAdmin'))
