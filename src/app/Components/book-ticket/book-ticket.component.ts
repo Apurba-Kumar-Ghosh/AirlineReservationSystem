@@ -34,23 +34,28 @@ export class BookTicketComponent implements OnInit {
     this.ticket.TotalFare = this.fare * form.value.NoOfTickets;
     this.ticket.Status = 'Booked';
     this.ticket.TicketNo = 123;
-    this.ticketService.bookTicket(this.ticket).subscribe((res) => {
-      console.log(res);
-      if (
-        res.message === 'Booking Request is being Processed' ||
-        res.isSuccess === true
-      ) {
-        window.alert('Your booking number is ' + res.reservation.ticketNo);
-        this.isLoading = true;
-        setTimeout(() => {
-          this.router.navigate(['../ViewReservations'], {
-            relativeTo: this.route,
-          });
-        }, 500);
-      } else {
-        this.isLoading = false;
-        window.alert('This flight is already fully booked');
+    this.ticketService.bookTicket(this.ticket).subscribe(
+      (res) => {
+        console.log(res);
+        if (
+          res.message === 'Booking Request is being Processed' ||
+          res.isSuccess === true
+        ) {
+          window.alert('Your booking number is ' + res.reservation.ticketNo);
+          this.isLoading = true;
+          setTimeout(() => {
+            this.router.navigate(['../ViewReservations'], {
+              relativeTo: this.route,
+            });
+          }, 500);
+        } else {
+          this.isLoading = false;
+          window.alert('This flight is already fully booked');
+        }
+      },
+      (err: any) => {
+        window.alert('This flight does not have the amt of seats required');
       }
-    });
+    );
   }
 }
