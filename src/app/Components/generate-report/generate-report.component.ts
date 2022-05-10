@@ -14,6 +14,7 @@ export class GenerateReportComponent implements OnInit {
   public endDate: Date;
   public flightIdAmt: DoubleRange;
   public totalRevenue: DoubleRange;
+  public revenue: string;
   constructor(private reportService: ReportService) {
     this.totalRevenue = null;
     this.flightIdAmt = null;
@@ -31,6 +32,7 @@ export class GenerateReportComponent implements OnInit {
   generateAirlineRevenue() {
     this.reportService.generateAirlineReport().subscribe((res) => {
       this.totalRevenue = res.revenue;
+      this.revenue = 'The total revenue of the airline is Rs. ' + res.revenue;
     });
   }
 }
