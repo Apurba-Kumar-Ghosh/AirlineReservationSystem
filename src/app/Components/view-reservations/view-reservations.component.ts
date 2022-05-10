@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TicketService } from 'src/app/Services/ticket.service';
 import { Ticket } from 'src/app/ticket';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-view-reservations',
@@ -19,6 +20,8 @@ export class ViewReservationsComponent implements OnInit {
     'Seats',
     'Status',
   ];
+
+  public dataSource: MatTableDataSource<Ticket>;
   public tickets: Ticket[];
   public isLoading: boolean;
   public ticketId: number;
@@ -26,13 +29,12 @@ export class ViewReservationsComponent implements OnInit {
     this.tickets = [];
     this.isLoading = false;
   }
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit(): void {
     // this.getTickets();
     this.ticketService
       .getAllTicketsByPassengerName(sessionStorage.getItem('UserName') || '')
       .subscribe((res) => {
-        console.log(res);
         // this.fillDetails(res);
         if (res.reservation !== null)
           res.reservation.map((tick: any) => {
@@ -49,6 +51,8 @@ export class ViewReservationsComponent implements OnInit {
             temp.NoOfTickets = tick.noOfTickets;
             this.tickets.push(temp);
           });
+        this.dataSource = new MatTableDataSource(this.tickets);
+        this.dataSource.paginator = this.paginator;
       });
   }
   cancelTicket(ticket: Ticket) {
@@ -62,7 +66,7 @@ export class ViewReservationsComponent implements OnInit {
       this.ticketService.cancelTicket(ticket.TicketNo).subscribe((res) => {
         this.tickets = [];
         if (res.isSuccess) {
-          // window.alert(res.message);
+          this.getTickets();
         }
       });
     }
@@ -71,7 +75,6 @@ export class ViewReservationsComponent implements OnInit {
     this.ticketService
       .getAllTicketsByPassengerName(sessionStorage.getItem('UserName') || '')
       .subscribe((res) => {
-        console.log(res);
         this.fillDetails(res.reservation);
       });
   }
@@ -91,6 +94,7 @@ export class ViewReservationsComponent implements OnInit {
         temp.PassengerName = res.reservation.passengerName;
         temp.NoOfTickets = res.reservation.noOfTickets;
         this.tickets.push(temp);
+        this.dataSource = new MatTableDataSource(this.tickets);
       } else {
         window.alert(res.message);
       }
@@ -110,6 +114,7 @@ export class ViewReservationsComponent implements OnInit {
       temp.PassengerName = res.passengerName;
       temp.NoOfTickets = res.noOfTickets;
       this.tickets.push(temp);
+      this.dataSource = new MatTableDataSource(this.tickets);
     });
   }
   findDate(dateOfBooking: any): boolean {

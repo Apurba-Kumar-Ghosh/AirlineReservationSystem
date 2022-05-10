@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Flight } from 'src/app/flight';
 import { FlightServiceService } from 'src/app/Services/flight-service.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-view-flights',
@@ -18,10 +20,12 @@ export class ViewFlightsComponent implements OnInit {
     'capacity',
   ];
   public flights: Flight[];
+  public dataSource: MatTableDataSource<Flight>;
   public Destination: string;
   public Source: string;
   public isAdmin: boolean;
   public date: Date;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private flightService: FlightServiceService,
     private router: Router,
@@ -57,6 +61,8 @@ export class ViewFlightsComponent implements OnInit {
           temp.NoOfSeatsAvailable = flight.noOfSeatsAvailable;
           temp.Status = flight.status;
           this.flights.push(temp);
+          this.dataSource = new MatTableDataSource(this.flights);
+          this.dataSource.paginator = this.paginator;
         });
       });
   }
